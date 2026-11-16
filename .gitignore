@@ -1,0 +1,39 @@
+# ===== SECRETS: never upload these =====
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*.p12
+*.cer
+secrets.*
+credentials.*
+passwords.*
+*.secret
+config.local.*
+appsettings.Development.json
+local.settings.json
+
+# ===== Python =====
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+
+# ===== Node =====
+node_modules/
+
+# ===== Lab output / logs with real data =====
+*.log
+exports/
+output/
+
+# ===== Windows / editor =====
+Thumbs.db
+desktop.ini
+.vscode/
+*.tmp
+
+# keep the template
+!.env.example
