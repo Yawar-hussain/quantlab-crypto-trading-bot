@@ -3,6 +3,8 @@
 > 🎓 **MSc project, Ulster University** (Computer Science & Technology, 2026).
 > Runs on **Alpaca paper trading only** (virtual money). **Not financial advice.**
 
+🌐 **Project showcase:** https://yawar-hussain.github.io/quantlab-crypto-trading-bot/
+
 ## What it does
 QUANT·LAB is a Python trading bot that scans 10 crypto pairs every 10 minutes, detects the current market regime (bull, caution, bear, crash) and switches between strategies accordingly. A Flask backend and a web dashboard show portfolio value, trades, equity curve and the live bot log.
 
