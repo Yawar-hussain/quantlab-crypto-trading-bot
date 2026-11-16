@@ -25,6 +25,7 @@ Data pipeline: [docs/data-pipeline.svg](docs/data-pipeline.svg)
 | `regime_bot.py` | Trading bot: indicators, regime detection, strategies, order execution |
 | `server.py` | Flask REST API that reads Alpaca account data and trade logs |
 | `dashboard.html` | Front-end dashboard served by the Flask server |
+| `showcase.html` | Project showcase landing page (served at `/`, links to the dashboard at `/live`) |
 | `start_quantlab.sh` | Starts the bot and the dashboard (reads keys from `.env`) |
 
 ## Tech stack
