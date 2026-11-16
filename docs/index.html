@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QUANT·LAB — MSc Project Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c10;
+  --surface: #111318;
+  --surface2: #181c24;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.14);
+  --text: #e8eaf0;
+  --muted: #6b7280;
+  --accent: #00d4aa;
+  --accent2: #3b82f6;
+  --green: #10b981;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --mono: 'Space Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,12,16,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-icon{width:32px;height:32px;background:var(--accent);border-radius:7px;display:flex;align-items:center;justify-content:center;}
+.nav-icon svg{width:18px;height:18px;}
+.nav-brand{font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:0.06em;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{font-family:var(--mono);font-size:11px;padding:8px 18px;background:var(--accent);color:#000;border-radius:6px;text-decoration:none;font-weight:700;letter-spacing:0.04em;transition:opacity 0.2s;}
+.nav-cta:hover{opacity:0.85;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,170,0.07) 0%, transparent 70%);pointer-events:none;}
+.hero-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(0,212,170,0.3);padding:5px 14px;border-radius:20px;margin-bottom:28px;display:inline-block;}
+.hero h1{font-size:clamp(36px,6vw,72px);font-weight:600;line-height:1.1;margin-bottom:24px;letter-spacing:-0.02em;}
+.hero h1 span{color:var(--accent);}
+.hero-sub{font-size:18px;color:var(--muted);max-width:580px;line-height:1.7;margin-bottom:48px;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.btn-primary{font-family:var(--mono);font-size:12px;padding:14px 28px;background:var(--accent);color:#000;border-radius:8px;text-decoration:none;font-weight:700;letter-spacing:0.04em;transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,170,0.3);}
+.btn-secondary{font-family:var(--mono);font-size:12px;padding:14px 28px;border:1px solid var(--border2);color:var(--text);border-radius:8px;text-decoration:none;font-weight:400;letter-spacing:0.04em;transition:all 0.2s;}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+.hero-stats{display:flex;gap:48px;margin-top:72px;flex-wrap:wrap;justify-content:center;}
+.hstat{text-align:center;}
+.hstat-val{font-family:var(--mono);font-size:32px;font-weight:700;color:var(--accent);}
+.hstat-label{font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
+
+/* SECTION */
+section{padding:100px 48px;max-width:1200px;margin:0 auto;}
+.section-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.section-title{font-size:clamp(28px,4vw,42px);font-weight:600;line-height:1.15;margin-bottom:16px;letter-spacing:-0.01em;}
+.section-sub{font-size:16px;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:56px;}
+.divider{width:100%;height:1px;background:var(--border);max-width:1200px;margin:0 auto;}
+
+/* TOOLS GRID */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;}
+.tool-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden;}
+.tool-card:hover{border-color:var(--border2);transform:translateY(-3px);}
+.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.tc-green::before{background:var(--green);}
+.tc-blue::before{background:var(--accent2);}
+.tc-accent::before{background:var(--accent);}
+.tc-warn::before{background:var(--warn);}
+.tc-red::before{background:var(--danger);}
+.tc-purple::before{background:#8b5cf6;}
+.tool-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:20px;}
+.tool-name{font-size:14px;font-weight:600;margin-bottom:6px;}
+.tool-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.tool-tag{display:inline-block;font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:3px;margin-top:10px;background:rgba(255,255,255,0.05);color:var(--muted);letter-spacing:0.06em;}
+
+/* ROADMAP */
+.roadmap{display:grid;gap:0;}
+.rm-item{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:28px 0;border-bottom:1px solid var(--border);position:relative;}
+.rm-item:last-child{border-bottom:none;}
+.rm-num{font-family:var(--mono);font-size:11px;color:var(--muted);padding-top:4px;letter-spacing:0.08em;}
+.rm-content{}
+.rm-phase{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.rm-title{font-size:16px;font-weight:600;margin-bottom:6px;}
+.rm-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.rm-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:4px;margin-top:10px;}
+.badge-done{background:rgba(16,185,129,0.12);color:var(--green);border:1px solid rgba(16,185,129,0.25);}
+.badge-next{background:rgba(59,130,246,0.12);color:var(--accent2);border:1px solid rgba(59,130,246,0.25);}
+
+/* BACKTEST RESULTS */
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.big-stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:32px;text-align:center;}
+.big-stat-val{font-family:var(--mono);font-size:48px;font-weight:700;line-height:1;}
+.big-stat-label{font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:0.08em;text-transform:uppercase;}
+.coins-table{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);}
+td{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.03);}
+tr:last-child td{border-bottom:none;}
+.grade-a{color:var(--green);font-weight:700;}
+.grade-b{color:var(--warn);font-weight:700;}
+.grade-d{color:var(--danger);font-weight:700;}
+.pnl-pos{color:var(--green);font-family:var(--mono);}
+.pnl-neg{color:var(--danger);font-family:var(--mono);}
+.selected-badge{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(16,185,129,0.1);color:var(--green);}
+.dropped-badge{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:3px;background:rgba(239,68,68,0.1);color:var(--danger);}
+
+/* ARCHITECTURE */
+.arch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.arch-col{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;}
+.arch-col-title{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.arch-item{background:var(--surface2);border-radius:6px;padding:10px 12px;margin-bottom:8px;font-size:12px;}
+.arch-item-name{font-weight:600;margin-bottom:2px;}
+.arch-item-desc{font-size:11px;color:var(--muted);}
+
+/* LIVE CTA */
+.live-cta{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:64px;text-align:center;position:relative;overflow:hidden;margin:0 48px 100px;}
+.live-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 100%,rgba(0,212,170,0.08) 0%,transparent 70%);pointer-events:none;}
+.live-cta h2{font-size:clamp(24px,4vw,42px);font-weight:600;margin-bottom:16px;letter-spacing:-0.01em;}
+.live-cta p{font-size:16px;color:var(--muted);max-width:480px;margin:0 auto 36px;line-height:1.7;}
+.live-pulse{display:flex;align-items:center;gap:8px;justify-content:center;font-family:var(--mono);font-size:12px;color:var(--accent);margin-bottom:32px;letter-spacing:0.08em;}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--muted);}
+footer a{color:var(--accent);text-decoration:none;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  section{padding:60px 20px;}
+  .hero{padding:100px 20px 60px;}
+  .results-grid{grid-template-columns:1fr;}
+  .arch-grid{grid-template-columns:1fr 1fr;}
+  .live-cta{margin:0 20px 60px;padding:40px 24px;}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-icon">
+      <svg viewBox="0 0 20 20" fill="none" stroke="#000" stroke-width="2">
+        <polyline points="2,14 7,8 11,11 18,4"/>
+        <path d="M15 4h3v3"/>
+      </svg>
+    </div>
+    <div>
+      <div class="nav-brand">QUANT·LAB</div>
+      <div style="font-size:9px;color:#6b7280;letter-spacing:0.06em;">M. YAWAR HUSSAIN</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+  </ul>
+  <a href="https://github.com/Yawar-hussain/quantlab-crypto-trading-bot" class="nav-cta">VIEW SOURCE CODE →</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">MSc Computer Science &amp; Technology — Ulster University 2026</div>
+  <h1>AI-Powered Crypto<br><span>Trading Bot</span></h1>
+  <p class="hero-sub">A full-stack autonomous trading system — from raw market data to a live cloud-deployed bot running 24/7, built by Muhammad Yawar Hussain.</p>
+  <div class="hero-btns">
+    <a href="https://github.com/Yawar-hussain/quantlab-crypto-trading-bot" class="btn-primary">
+      <span style="width:7px;height:7px;border-radius:50%;background:#000;animation:pulse 2s infinite;display:inline-block;"></span>
+      VIEW SOURCE CODE
+    </a>
+    <a href="#roadmap" class="btn-secondary">SEE THE JOURNEY →</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-val">+17.13%</div><div class="hstat-label">Annual Return (Backtest)</div></div>
+    <div class="hstat"><div class="hstat-val">1.02%</div><div class="hstat-label">Max Drawdown (Backtest)</div></div>
+    <div class="hstat"><div class="hstat-val">3,849</div><div class="hstat-label">Backtest Trades</div></div>
+    <div class="hstat"><div class="hstat-val">24/7</div><div class="hstat-label">Cloud Uptime</div></div>
+    <div class="hstat"><div class="hstat-val">£0</div><div class="hstat-label">Infrastructure Cost</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-tag">Stack &amp; Tools</div>
+  <div class="section-title">Everything Used to Build This</div>
+  <p class="section-sub">Every tool, API, and platform that made this project possible — from AI assistance to cloud deployment.</p>
+  <div class="tools-grid">
+    <div class="tool-card tc-purple">
+      <div class="tool-icon" style="background:rgba(139,92,246,0.15);">🤖</div>
+      <div class="tool-name">OpenClaw AI Agent</div>
+      <div class="tool-desc">Local LLM gateway running on port 18789 using Mistral AI. Used for code generation, debugging, and strategy design throughout the project.</div>
+      <span class="tool-tag">AI ASSISTANT</span>
+    </div>
+    <div class="tool-card tc-accent">
+      <div class="tool-icon" style="background:rgba(0,212,170,0.15);">🐍</div>
+      <div class="tool-name">Python 3.8</div>
+      <div class="tool-desc">Core language for all bot logic, backtesting engine, API integrations, data processing, and the dashboard backend server.</div>
+      <span class="tool-tag">CORE LANGUAGE</span>
+    </div>
+    <div class="tool-card tc-blue">
+      <div class="tool-icon" style="background:rgba(59,130,246,0.15);">📈</div>
+      <div class="tool-name">Alpaca Markets API</div>
+      <div class="tool-desc">$100k paper trading account. Provides real-time OHLCV market data, order execution, portfolio history, and position management.</div>
+      <span class="tool-tag">TRADING API</span>
+    </div>
+    <div class="tool-card tc-green">
+      <div class="tool-icon" style="background:rgba(16,185,129,0.15);">☁️</div>
+      <div class="tool-name">Oracle Cloud VPS</div>
+      <div class="tool-desc">VM.Standard.E2.1.Micro — 1 OCPU, 1GB RAM, 50GB storage. Free tier. Ubuntu 20.04 LTS running in UK South (London). £0/month.</div>
+      <span class="tool-tag">INFRASTRUCTURE</span>
+    </div>
+    <div class="tool-card tc-warn">
+      <div class="tool-icon" style="background:rgba(245,158,11,0.15);">🐧</div>
+      <div class="tool-name">Ubuntu 20.04 LTS</div>
+      <div class="tool-desc">Server OS. Python venv for isolation, nohup for persistent 24/7 process, SSH key authentication, UFW + iptables firewall rules.</div>
+      <span class="tool-tag">OPERATING SYSTEM</span>
+    </div>
+    <div class="tool-card tc-red">
+      <div class="tool-icon" style="background:rgba(239,68,68,0.15);">⚗️</div>
+      <div class="tool-name">Flask + Python</div>
+      <div class="tool-desc">Lightweight web framework powering this dashboard server. REST API endpoints serve live Alpaca data, trade logs, and strategy state.</div>
+      <span class="tool-tag">DASHBOARD BACKEND</span>
+    </div>
+    <div class="tool-card tc-accent">
+      <div class="tool-icon" style="background:rgba(0,212,170,0.15);">📊</div>
+      <div class="tool-name">Pandas + NumPy</div>
+      <div class="tool-desc">8,758 hourly candles per coin processed for backtesting. RSI, ATR, EMA calculations across 12 cryptocurrency pairs over 1 year.</div>
+      <span class="tool-tag">DATA SCIENCE</span>
+    </div>
+    <div class="tool-card tc-purple">
+      <div class="tool-icon" style="background:rgba(139,92,246,0.15);">📱</div>
+      <div class="tool-name">Telegram Bot API</div>
+      <div class="tool-desc">Real-time trade alerts sent instantly to phone on every buy/sell execution. Includes entry price, stop loss, take profit levels.</div>
+      <span class="tool-tag">NOTIFICATIONS</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-tag">Project Journey</div>
+  <div class="section-title">From Idea to Live System</div>
+  <p class="section-sub">7 iterations of backtesting, each building on the last — until a proven strategy was deployed live to the cloud.</p>
+  <div class="roadmap">
+    <div class="rm-item">
+      <div class="rm-num">01</div>
+      <div class="rm-content">
+        <div class="rm-phase">Setup Phase</div>
+        <div class="rm-title">Environment &amp; AI Tooling</div>
+        <div class="rm-desc">Set up Windows WSL2 with Ubuntu, configured OpenClaw AI agent (Mistral, port 18789), connected Alpaca paper trading account with $100k capital.</div>
+        <span class="rm-badge badge-done">✓ COMPLETED</span>
+      </div>
+    </div>
+    <div class="rm-item">
+      <div class="rm-num">02</div>
+      <div class="rm-content">
+        <div class="rm-phase">Strategy v1</div>
+        <div class="rm-title">Initial Strategy — Too Restrictive</div>
+        <div class="rm-desc">200 EMA + RSI below 35 + Bullish Engulfing candle pattern. Result: only 1 trade in an entire year. Filters were too strict — scrapped and rebuilt.</div>
+        <span class="rm-badge badge-done">✓ COMPLETED</span>
+      </div>
+    </div>
+    <div class="rm-item">
+      <div class="rm-num">03</div>
+      <div class="rm-content">
+        <div class="rm-phase">Strategy v3–v4</div>
+        <div class="rm-title">Relaxed Filters &amp; Parameter Optimisation</div>
+        <div class="rm-desc">Removed EMA filter, raised RSI threshold to 40. Tested 3 strategies simultaneously — RSI-only emerged as best. Then tested 8 RSI buy/sell combinations. Winner: RSI 45 entry / 65 exit.</div>
+        <span class="rm-badge badge-done">✓ COMPLETED</span>
+      </div>
+    </div>
+    <div class="rm-item">
+      <div class="rm-num">04</div>
+      <div class="rm-content">
+        <div class="rm-phase">Strategy v5–v6</div>
+        <div class="rm-title">ATR Optimisation &amp; 10-Coin Expansion</div>
+        <div class="rm-desc">Tested 9 ATR × Risk:Reward combinations. ATR 1.5 + RR 1.5 gave +12% return with 43.5% win rate. Applied proven settings to 10 coins — +16.37% return, all coins profitable.</div>
+        <span class="rm-badge badge-done">✓ COMPLETED</span>
+      </div>
+    </div>
+    <div class="rm-item">
+      <div class="rm-num">05</div>
+      <div class="rm-content">
+        <div class="rm-phase">Strategy v7 — Final</div>
+        <div class="rm-title">12-Coin Ranking &amp; Selection</div>
+        <div class="rm-desc">Added ADA and MATIC. Ranked all 12 coins by P&L, win rate, and trade count. Dropped XRP (only loser at -$9) and MATIC (0 trades). Top 10 selected for live deployment.</div>
+        <span class="rm-badge badge-done">✓ COMPLETED</span>
+      </div>
+    </div>
+    <div class="rm-item">
+      <div class="rm-num">06</div>
+      <div class="rm-content">
+        <div class="rm-phase">Deployment</div>
+        <div class="rm-title">Oracle Cloud VPS — 24/7 Live</div>
+        <div class="rm-desc">Provisioned VM.Standard.E2.1.Micro on Oracle Cloud Free Tier, UK South London. Configured VCN, security lists, internet gateway. Deployed with Python venv + nohup for persistent uptime.</div>
+        <span class="rm-badge badge-done">✓ LIVE NOW</span>
+      </div>
+    </div>
+    <div class="rm-item">
+      <div class="rm-num">07</div>
+      <div class="rm-content">
+        <div class="rm-phase">Regime Bot — Current</div>
+        <div class="rm-title">3-Strategy Adaptive System</div>
+        <div class="rm-desc">Upgraded to QUANT·LAB with 3 concurrent strategies: Trend Following (momentum/breakout), Mean Reversion (RSI/Bollinger), and Volatility Guard (VIX-based hedging overlay). Strategies activate based on market regime detection.</div>
+        <span class="rm-badge badge-done">✓ RUNNING NOW</span>
+      </div>
+    </div>
+    <div class="rm-item">
+      <div class="rm-num">08</div>
+      <div class="rm-content">
+        <div class="rm-phase">Future Work</div>
+        <div class="rm-title">LSTM + Sentiment Analysis</div>
+        <div class="rm-desc">Phase 2: Train LSTM on 2+ years of hourly data to predict 4-hour price direction. Phase 3: Fine-tune BERT for crypto Twitter/Reddit sentiment. Expected win rate increase: 44% → 55%+.</div>
+        <span class="rm-badge badge-next">NEXT SEMESTER</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RESULTS -->
+<section id="results">
+  <div class="section-tag">Backtest Results</div>
+  <div class="section-title">Proven Performance — 1 Year of Data</div>
+  <p class="section-sub">8,758 hourly candles per coin. 12 coins tested. 3,849 total trades executed in simulation before going live. <strong>These are historical backtest results, not live performance.</strong> Live paper-trading results differ and are shown on the dashboard.</p>
+  <div class="results-grid" style="margin-bottom:24px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="big-stat" style="border-top:3px solid var(--green);">
+        <div class="big-stat-val" style="color:var(--green);">+17.13%</div>
+        <div class="big-stat-label">Annual Return (Backtest)</div>
+      </div>
+      <div class="big-stat" style="border-top:3px solid var(--accent2);">
+        <div class="big-stat-val" style="color:var(--accent2);">43.9%</div>
+        <div class="big-stat-label">Win Rate</div>
+      </div>
+      <div class="big-stat" style="border-top:3px solid var(--warn);">
+        <div class="big-stat-val" style="color:var(--warn);">1.35</div>
+        <div class="big-stat-label">Profit Factor</div>
+      </div>
+      <div class="big-stat" style="border-top:3px solid var(--accent);">
+        <div class="big-stat-val" style="color:var(--accent);">1.02%</div>
+        <div class="big-stat-label">Max Drawdown (Backtest)</div>
+      </div>
+    </div>
+    <div class="coins-table">
+      <table>
+        <thead><tr><th>#</th><th>Coin</th><th>P&L</th><th>Win %</th><th>Grade</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>UNIUSD</strong></td><td class="pnl-pos">+$6,895</td><td>46.7%</td><td class="grade-a">A+</td><td><span class="selected-badge">SELECTED</span></td></tr>
+          <tr><td>2</td><td><strong>LINKUSD</strong></td><td class="pnl-pos">+$3,770</td><td>45.9%</td><td class="grade-a">A+</td><td><span class="selected-badge">SELECTED</span></td></tr>
+          <tr><td>3</td><td><strong>DOTUSD</strong></td><td class="pnl-pos">+$3,440</td><td>43.9%</td><td class="grade-a">A+</td><td><span class="selected-badge">SELECTED</span></td></tr>
+          <tr><td>4</td><td><strong>LTCUSD</strong></td><td class="pnl-pos">+$2,090</td><td>45.3%</td><td class="grade-a">A+</td><td><span class="selected-badge">SELECTED</span></td></tr>
+          <tr><td>5</td><td><strong>SOLUSD</strong></td><td class="pnl-pos">+$1,789</td><td>43.7%</td><td class="grade-a">A</td><td><span class="selected-badge">SELECTED</span></td></tr>
+          <tr><td>6</td><td><strong>DOGESD</strong></td><td class="pnl-pos">+$1,259</td><td>41.7%</td><td class="grade-b">B</td><td><span class="selected-badge">SELECTED</span></td></tr>
+          <tr><td>7</td><td><strong>BTCUSD</strong></td><td class="pnl-pos">+$1,024</td><td>43.9%</td><td class="grade-a">A</td><td><span class="selected-badge">SELECTED</span></td></tr>
+          <tr><td>8</td><td><strong>ETHUSD</strong></td><td class="pnl-pos">+$922</td><td>42.1%</td><td class="grade-b">B</td><td><span class="selected-badge">SELECTED</span></td></tr>
+          <tr><td>11</td><td><strong>XRPUSD</strong></td><td class="pnl-neg">-$9</td><td>37.3%</td><td class="grade-d">D</td><td><span class="dropped-badge">DROPPED</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="section-tag">System Architecture</div>
+  <div class="section-title">How It All Connects</div>
+  <p class="section-sub">Four layers working together — data ingestion, signal generation, execution, and monitoring.</p>
+  <div class="arch-grid">
+    <div class="arch-col">
+      <div class="arch-col-title" style="color:var(--accent2);">Data Layer</div>
+      <div class="arch-item"><div class="arch-item-name">Alpaca API</div><div class="arch-item-desc">OHLCV hourly data</div></div>
+      <div class="arch-item"><div class="arch-item-name">RSI (14)</div><div class="arch-item-desc">Oversold signal</div></div>
+      <div class="arch-item"><div class="arch-item-name">ATR (14)</div><div class="arch-item-desc">Volatility measure</div></div>
+      <div class="arch-item"><div class="arch-item-name">EMA (50)</div><div class="arch-item-desc">Trend filter</div></div>
+    </div>
+    <div class="arch-col">
+      <div class="arch-col-title" style="color:var(--accent);">Strategy Layer</div>
+      <div class="arch-item"><div class="arch-item-name">Trend Following</div><div class="arch-item-desc">Breakout momentum</div></div>
+      <div class="arch-item"><div class="arch-item-name">Mean Reversion</div><div class="arch-item-desc">RSI / Bollinger</div></div>
+      <div class="arch-item"><div class="arch-item-name">Volatility Guard</div><div class="arch-item-desc">VIX hedge overlay</div></div>
+      <div class="arch-item"><div class="arch-item-name">1% Risk Rule</div><div class="arch-item-desc">Per trade sizing</div></div>
+    </div>
+    <div class="arch-col">
+      <div class="arch-col-title" style="color:var(--green);">Execution Layer</div>
+      <div class="arch-item"><div class="arch-item-name">Alpaca Orders</div><div class="arch-item-desc">Paper trade execution</div></div>
+      <div class="arch-item"><div class="arch-item-name">Kill Switch</div><div class="arch-item-desc">3% daily drawdown</div></div>
+      <div class="arch-item"><div class="arch-item-name">Stop Loss</div><div class="arch-item-desc">1.5× ATR dynamic</div></div>
+      <div class="arch-item"><div class="arch-item-name">Take Profit</div><div class="arch-item-desc">1:1.5 risk:reward</div></div>
+    </div>
+    <div class="arch-col">
+      <div class="arch-col-title" style="color:var(--warn);">Infrastructure</div>
+      <div class="arch-item"><div class="arch-item-name">Oracle Cloud VPS</div><div class="arch-item-desc">Free tier, London</div></div>
+      <div class="arch-item"><div class="arch-item-name">Ubuntu 20.04</div><div class="arch-item-desc">nohup 24/7 process</div></div>
+      <div class="arch-item"><div class="arch-item-name">Telegram Alerts</div><div class="arch-item-desc">Real-time trade pings</div></div>
+      <div class="arch-item"><div class="arch-item-name">Flask Dashboard</div><div class="arch-item-desc">Live dashboard interface</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE CTA -->
+<div class="live-cta">
+  <div class="live-pulse"><div class="pulse-dot"></div> PAPER-TRADING PROJECT (MSc, ULSTER UNIVERSITY)</div>
+  <h2>See the Code</h2>
+  <p>Full source code, architecture diagrams and setup instructions are on GitHub.</p>
+  <a href="https://github.com/Yawar-hussain/quantlab-crypto-trading-bot" class="btn-primary" style="display:inline-flex;font-size:14px;padding:16px 36px;">VIEW SOURCE CODE →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 <strong style="color:var(--text);">Muhammad Yawar Hussain</strong> &nbsp;·&nbsp; MSc Computer Science &amp; Technology &nbsp;·&nbsp; Ulster University</span>
+  <span>Final Year Project &nbsp;·&nbsp; <a href="https://github.com/Yawar-hussain/quantlab-crypto-trading-bot">Source Code</a> &nbsp;·&nbsp; Paper Trading Mode</span>
+</footer>
+
+</body>
+</html>
